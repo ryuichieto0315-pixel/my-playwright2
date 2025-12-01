@@ -1,0 +1,11 @@
+{
+  "name": "e2e-automation-sample",
+  "version": "1.0.0",
+  "description": "Playwright E2E automation sample for portfolio",
+  "scripts": {
+    "test": "npx playwright test"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.43.0"
+  }
+}

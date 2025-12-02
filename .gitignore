@@ -1,0 +1,12 @@
+# Node.js/npmが生成するフォルダ
+/node_modules
+
+# Playwrightが生成する一時ファイルとレポート
+/playwright-report
+/test-results
+
+# Visual Studio (あなたが以前削除したもの)
+.vs/
+
+# 環境設定ファイル（機密情報を含む可能性があるため）
+.env

@@ -1,86 +1,103 @@
-my-playwright
+# Playwright E2E 自動テストプロジェクト
 
-自動 E2E テスト環境（Playwright）
-求職者向けポートフォリオ
+このリポジトリは、Playwright と TypeScript を使用した E2E（End-to-End）テストプロジェクトです。  
+保守性と拡張性を重視し、Page Object Model（POM）を採用しています。
 
-📌 プロジェクト概要
+---
 
-このリポジトリは、Playwright を使用した E2E（End-to-End）テストのサンプルプロジェクトです。
-Web UI の動作確認・API のテスト・各種 CI/CD 組み込みを想定した構成 になっており、
-自動化テストエンジニア / QA エンジニア / 開発エンジニア志望としての技術力を示す目的で作成しました。
+## ■ プロジェクトの目的
 
-🧪 主要機能 / テスト内容
-1. Google の起動テスト（E2E）
-import { test, expect } from '@playwright/test';
+- UI の一連の操作（ログイン〜購入完了）を自動化する  
+- テストコードと画面操作ロジックを分離し、保守性を高める  
+- 再利用性の高い E2E テストの構造を提示する  
 
-test('Google opens correctly', async ({ page }) => {
-  await page.goto('https://www.google.com');
-  await expect(page).toHaveTitle(/Google/);
-});
+---
 
-2. ログインページのテスト（例）
-// tests/login.test.ts（例）
+## ■ 使用技術
 
-3. API の動作確認テスト（例）
-// tests/api.test.ts（例）
+- Playwright  
+- TypeScript  
+- Page Object Model（POM）
 
-📁 ディレクトリ構成
-my-playwright/
+---
+
+## ■ フォルダ構成
+
+my-playwright2/
+├── tests/
+│ └── e2e.spec.ts // E2Eテスト本体
+├── pages/
+│ ├── LoginPage.ts // ログインページ
+│ ├── InventoryPage.ts // 商品一覧ページ
+│ └── CheckoutPage.ts // チェックアウトページ
 ├── playwright.config.ts
-├── package.json
-├── README.md  ← このファイル
-└── tests/
-    ├── google.spec.ts
-    ├── login.test.ts
-    └── api.test.ts
+└── package.json
 
-▶ 実行方法
-1. 依存関係のインストール
+yaml
+コードをコピーする
+
+---
+
+## ■ テスト内容（例：正常系購入フロー）
+
+1. ログインページにアクセス  
+2. 標準ユーザーとしてログイン  
+3. 商品（バックパック、バイクライト）をカートに追加  
+4. カート画面へ移動  
+5. チェックアウト情報を入力  
+6. 購入完了画面を確認  
+
+この流れを Page Object Model を用いて自動化しています。
+
+---
+
+## ■ インストール
+
+```bash
 npm install
-
-2. Playwright のブラウザをインストール
 npx playwright install
+■ テスト実行方法
+すべてのテストを実行：
 
-3. テスト実行
+bash
+コードをコピーする
 npx playwright test
+ブラウザを表示しながら実行：
 
-4. HTML レポートを見る
+bash
+コードをコピーする
+npx playwright test --headed
+レポートを表示：
+
+bash
+コードをコピーする
 npx playwright show-report
+■ Page Object Model（POM）について
+本プロジェクトでは POM を使用し、テストコードから UI の詳細を排除しています。
 
-🛠 使用技術
+テストコードは「何をテストするか」を記述
 
-Playwright（E2E テスト）
+ページごとの操作は pages ディレクトリに定義
 
-TypeScript
+UI が変更されても対象ページのクラスを修正するだけで対応可能
 
-Node.js
+これにより、保守性・可読性の高い E2E テストを書くことができます。
 
-GitHub Actions 対応可能な構成
+■ 今後の拡張（任意）
+異常系テストの追加
 
-🌟 工夫したポイント
+API テストとの統合
 
-テストコードは TypeScript を利用（読みやすさ・保守性向上）
+モバイルブラウザでの動作確認
 
-E2E / API / Login の基本的なテストを網羅
+テストデータ管理方法の改善
 
-GitHub の採用選考を通過するために、フォルダ構造や README を整備
-
-実務に近い構成で、拡張性のある自動化環境 を意識して作成
-
-🚀 今後追加予定
-
-CI/CD（GitHub Actions）による自動テストパイプライン
-
-API Contract テストの追加
-
-スクリーンショットの自動保存
-
-カバレッジ計測
-
-パフォーマンステスト（k6 or JMeter）との連携
+■ 補足
+このリポジトリは、自動テストの学習・実践・ポートフォリオ用として構築しています。
+Playwright を使用したテスト設計や Page Object Model の理解を深めることを目的としています。
 
 👤 作成者
 
-衞藤 龍一（Ryuuichi Etoh）
+衞藤 龍一（Ryuichi Eto）
 自動化テスト・API テスト・負荷試験に強みがあります。
 E2E テスト・API 設計書を用いた品質改善を得意とします。
